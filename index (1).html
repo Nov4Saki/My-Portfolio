@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdalrahman Eissa | AI/ML Portfolio</title>
+    
+    <!-- Fonts: VT323 for the retro game vibe, Inter for readable body text -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Game Theme Colors */
+            --bg-color: #0a0a0c;
+            --grid-color: #1a1a1a;
+            --surface: #151518;
+            --surface-light: #222226;
+            
+            --neon-green: #90FF33;
+            --neon-purple: #D238FF;
+            --neon-cyan: #00F0FF;
+            --neon-orange: #FF9E00;
+            --text-main: #EEEEEE;
+            --text-muted: #A0A0A0;
+            
+            --border-glow: 0 0 10px rgba(144, 255, 51, 0.3);
+            --border-glow-hover: 0 0 20px rgba(144, 255, 51, 0.6);
+            --font-game: 'VT323', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image:
+                linear-gradient(var(--grid-color) 2px, transparent 2px),
+                linear-gradient(90deg, var(--grid-color) 2px, transparent 2px);
+            background-size: 40px 40px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* CRT Scanline overlay */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        ::selection {
+            background: var(--neon-purple);
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .game-font {
+            font-family: var(--font-game);
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        .text-green { color: var(--neon-green); }
+        .text-purple { color: var(--neon-purple); }
+        .text-cyan { color: var(--neon-cyan); }
+        .text-orange { color: var(--neon-orange); }
+
+        /* Navigation */
+        .nav {
+            background: rgba(10, 10, 12, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--neon-purple);
+            box-shadow: 0 0 15px rgba(210, 56, 255, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-link {
+            font-family: var(--font-game);
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--neon-green);
+            border: 1px dashed var(--neon-green);
+            background: rgba(144, 255, 51, 0.1);
+            text-shadow: 0 0 8px var(--neon-green);
+        }
+
+        /* Buttons & CTAs */
+        .btn-cta {
+            display: inline-block;
+            font-family: var(--font-game);
+            font-size: 1.5rem;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-cta:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .btn-cta.primary {
+            background: rgba(144, 255, 51, 0.1);
+            color: var(--neon-green);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(144, 255, 51, 0.3);
+        }
+
+        .btn-cta.primary:hover {
+            background: var(--neon-green);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 1px dashed #333;
+        }
+
+        /* Avatar Container */
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(210, 56, 255, 0.4);
+            position: relative;
+            background: var(--surface-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Scanning line effect over avatar */
+        .hero-avatar::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(210,56,255,0) 0%, rgba(210,56,255,0.4) 50%, rgba(210,56,255,0) 100%);
+            height: 20%;
+            animation: scanline 3s linear infinite;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { top: -20%; }
+            100% { top: 120%; }
+        }
+
+        /* Put this class on the <img> tag inside the placeholder */
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 2;
+            filter: contrast(1.1) brightness(0.9); /* slight game aesthetic filter */
+        }
+
+        .avatar-placeholder {
+            font-size: 4rem;
+            color: var(--neon-purple);
+            animation: pulse-avatar 2s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes pulse-avatar {
+            0% { opacity: 0.3; transform: scale(0.95); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            letter-spacing: 4px;
+            color: var(--text-main);
+            text-shadow: 3px 3px 0px var(--neon-purple);
+            margin-bottom: 1rem;
+            animation: glitch 3s infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-usp {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            border-left: 4px solid var(--neon-orange);
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-link {
+            font-family: var(--font-game);
+            font-size: 1.3rem;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 8px var(--neon-green);
+        }
+
+        /* Sections and Scroll Animation */
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header::before {
+            content: ">>";
+            color: var(--neon-green);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid #333;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--neon-purple);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 15px rgba(210, 56, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .skill-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .skill-title {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            font-family: var(--font-game);
+            background: var(--surface-light);
+            color: var(--neon-green);
+            padding: 0.3rem 0.8rem;
+            font-size: 1.2rem;
+            border: 1px solid #444;
+        }
+
+        /* Projects Horizontal Scroll */
+        .projects-wrapper {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-cyan) var(--surface);
+        }
+
+        .projects-wrapper::-webkit-scrollbar { height: 8px; }
+        .projects-wrapper::-webkit-scrollbar-track { background: var(--surface); }
+        .projects-wrapper::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 4px; }
+
+        .project-card {
+            flex: 0 0 350px;
+            background: var(--surface);
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 180px;
+            background: var(--surface-light);
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-family: var(--font-game);
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-family: var(--font-game);
+            color: var(--neon-purple);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .link-btn {
+            font-family: var(--font-game);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 1px solid var(--neon-cyan);
+            padding: 0.3rem 0.8rem;
+            transition: 0.3s;
+        }
+
+        .link-btn:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-color);
+        }
+
+        /* Timeline / Experience */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px dashed #444;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.65rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: var(--bg-color);
+            border: 2px solid var(--neon-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-orange);
+        }
+
+        .timeline-role {
+            font-size: 1.8rem;
+            color: var(--neon-orange);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-meta {
+            font-family: var(--font-game);
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: var(--surface);
+            border: 1px solid #333;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .achievement-card:hover {
+            border-color: var(--neon-green);
+            transform: scale(1.02);
+        }
+
+        .achiev-icon {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--neon-purple);
+            margin-top: 3rem;
+        }
+
+        .footer-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .section-header { font-size: 2.2rem; }
+            .projects-wrapper { padding-bottom: 1rem; }
+            .project-card { flex: 0 0 300px; }
+            .hero-avatar { width: 150px; height: 150px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#hero" class="nav-link">HOME</a>
+            <a href="#about" class="nav-link">PROFILE</a>
+            <a href="#skills" class="nav-link">INVENTORY</a>
+            <a href="#projects" class="nav-link">QUESTS</a>
+            <a href="#experience" class="nav-link">GUILD_LOG</a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            
+            <div class="game-font" style="color: var(--text-muted); font-size: 1.5rem; margin-bottom: 1rem;">
+                [ PLAYER 1 READY ]
+            </div>
+
+            <!-- PERSONAL IMAGE / AVATAR PLACEHOLDER -->
+            <div class="hero-avatar">
+                <!-- IMPORTANT: Remove the comment tags below and add your personal image URL -->
+                <!-- <img src="URL_TO_YOUR_IMAGE.jpg" alt="Abdalrahman Eissa Avatar"> -->
+                
+                <!-- This placeholder icon shows if no image is added -->
+                <img src="https://uploads.onecompiler.io/44evm6u2w/44fu7rrhg/29e71912-2f09-4bc4-8f96-d08a08584a37.png" alt="Abdalrahman Eissa Avatar">
+            </div>
+
+            <h1 class="hero-title">ABDALRAHMAN EISSA</h1>
+            <h2 class="hero-subtitle text-cyan">CLASS: ML / AI ENGINEER</h2>
+            
+            <div class="contact-bar">
+                <a href="mailto:abdalrahmaneissa05@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> ABDALRAHMANEISSA05@GMAIL.COM
+                </a>
+                <a href="tel:+201012860003" class="contact-link">
+                    <i class="fas fa-phone"></i> +20 1012860003
+                </a>
+                <a href="https://github.com/Nov4Saki" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GITHUB: NOV4SAKI
+                </a>
+                <a href="https://linkedin.com/in/abd-alrahman-eissa" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LINKEDIN
+                </a>
+                <span class="contact-link"><i class="fas fa-map-marker-alt"></i> NEW DAMIETTA, EGYPT</span>
+            </div>
+
+            <div class="hero-usp">
+                <p><strong>UNIQUE SELLING POINT:</strong> Bridging the gap between theoretical AI and real-world deployment. I specialize in building intelligent, practical systems focusing on Computer Vision, LLM-based applications, and Agent workflow orchestration. Strong background in Python, research-oriented problem solving, and model optimization.</p>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                <a href="#projects" class="btn-cta primary"><i class="fas fa-folder-open"></i> VIEW QUESTS (PROJECTS)</a>
+                <a href="mailto:abdalrahmaneissa05@gmail.com" class="btn-cta"><i class="fas fa-terminal"></i> INITIATE CONTACT</a>
+            </div>
+        </section>
+
+        <!-- PROFILE / EDUCATION -->
+        <section id="about" class="section">
+            <h2 class="section-header">CHARACTER_PROFILE</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                
+                <div class="skill-card" style="border-left-color: var(--neon-cyan);">
+                    <h3 class="skill-title text-cyan">CURRENT OBJECTIVE</h3>
+                    <p style="color: var(--text-muted);">Seeking internship or junior roles where I can apply strong Python skills, research-oriented problem solving, and practical model deployment experience to build intelligent, real-world systems.</p>
+                    <br>
+                    <h4 class="game-font text-cyan" style="font-size: 1.2rem; margin-bottom: 0.5rem;">CAREER INTERESTS:</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Machine Learning Engineering</span>
+                        <span class="tag">Applied AI</span>
+                        <span class="tag">AI Research</span>
+                        <span class="tag">Intelligent App Dev</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" style="border-left-color: var(--neon-green);">
+                    <h3 class="skill-title text-green">ACADEMIC_TRAINING</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <h4 class="game-font" style="font-size: 1.5rem;">BACHELOR OF SCIENCE IN COMPUTER SCIENCE</h4>
+                        <p class="text-green" style="font-size: 0.9rem;">Damietta University – Faculty of Computers and Artificial Intelligence (FCAI)</p>
+                        <p class="game-font text-muted" style="margin-top: 0.5rem;">[ EXPECTED GRADUATION: JUL 2026 ]</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 class="game-font text-green" style="font-size: 1.3rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem;">CERTIFICATIONS</h4>
+                        <p style="margin-top: 0.5rem;"><strong>Building LLM Applications With Prompt Engineering</strong> <br> <span class="text-muted">— NVIDIA (2025)</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS / INVENTORY -->
+        <section id="skills" class="section">
+            <h2 class="section-header">TECHNICAL_INVENTORY</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-code"></i> LANGUAGES</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-tools"></i> FRAMEWORKS & TOOLS</h3>
+                    <div class="skill-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Roboflow</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">Google Colab</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3 class="skill-title"><i class="fas fa-brain"></i> DOMAINS</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">LLM Applications</span>
+                        <span class="tag">Prompt Engineering</span>
+                        <span class="tag">AI Research</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS / QUESTS -->
+        <section id="projects" class="section">
+            <h2 class="section-header">ACTIVE_QUESTS (PROJECTS)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Scroll horizontally to view my deployed systems and research projects.</p>
+            
+            <div class="projects-wrapper">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <!-- REPLACE SRC WITH YOUR IMAGE URL -->
+                        <!-- <img src="your-image-url.jpg" alt="Chicken Invaders Object Detection"> -->
+                        [ IMAGE NOT FOUND: INSERT YOLOv8 DEMO ]
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title game-font">Chicken Invaders Object Detection</h3>
+                        <div class="project-tech">YOLOv8 | Roboflow | Google Colab</div>
+                        <p class="project-desc">Built a YOLOv8-based object detection system using over 2,200 labeled images. Trained quantized models on Google Colab for efficient performance and improved accuracy. Published dataset and models publicly.</p>
+                        <div class="project-links">
+                            <a href="https://www.roboflow.com/" target="_blank" class="link-btn">VIEW DATASET</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <!-- REPLACE SRC WITH YOUR IMAGE URL -->
+                        <!-- <img src="your-image-url.jpg" alt="AI Agent from Scratch"> -->
+                        [ IMAGE NOT FOUND: INSERT AGENT WORKFLOW ]
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title game-font">AI Agent from Scratch</h3>
+                        <div class="project-tech">Llama 3.1 | LangChain | Tool-Augmented</div>
+                        <p class="project-desc">Created a hands-on tutorial notebook for building ReAct Agents. Demonstrated safe API handling, 4-bit quantization, and Colab secrets. Integrated DuckDuckGo and task-specific tools (e.g., ASL Gloss Translator).</p>
+                        <div class="project-links">
+                            <a href="https://colab.research.google.com/" target="_blank" class="link-btn">VIEW NOTEBOOK</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <!-- REPLACE SRC WITH YOUR IMAGE URL -->
+                        <!-- <img src="your-image-url.jpg" alt="Emotion Detection ANFIS"> -->
+                        [ IMAGE NOT FOUND: INSERT ANFIS GRAPH ]
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title game-font">Emotion Detection using ANFIS</h3>
+                        <div class="project-tech">Fuzzy Logic | Neural Networks</div>
+                        <p class="project-desc">Developed an Adaptive Neuro-Fuzzy Inference System combining fuzzy logic and neural networks to create a highly interpretable model for text-based emotion classification.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-btn">VIEW PROJECT</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <!-- REPLACE SRC WITH YOUR IMAGE URL -->
+                        <!-- <img src="your-image-url.jpg" alt="Earthquake Significance Analysis"> -->
+                        [ IMAGE NOT FOUND: INSERT DATA PLOT ]
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title game-font">Earthquake Significance Analysis</h3>
+                        <div class="project-tech">Scikit-learn | Pandas | Kaggle</div>
+                        <p class="project-desc">Performed data analysis and predictive modeling on Kaggle datasets to identify key seismic patterns and accurately predict earthquake significance.</p>
+                        <div class="project-links">
+                            <a href="https://www.kaggle.com/" target="_blank" class="link-btn">VIEW ON KAGGLE</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="section">
+            <h2 class="section-header">GUILD_LOG (EXPERIENCE)</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <h3 class="timeline-role game-font">Instructor</h3>
+                    <div class="timeline-meta">ACPC DU | Duration: 19 months</div>
+                    <p>Trained and mentored 30+ students in algorithms, data structures, and problem-solving. Designed instructional sessions to enhance competitive programming readiness.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3 class="timeline-role game-font">Mentor</h3>
+                    <div class="timeline-meta">ACPC DU | Duration: 16 months</div>
+                    <p>Guided participants through structured problem-solving tracks and ECPC preparation.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS -->
+        <section id="achievements" class="section">
+            <h2 class="section-header">UNLOCKABLES (ACHIEVEMENTS)</h2>
+            <div class="achievements-grid">
+                
+                <div class="achievement-card">
+                    <i class="fas fa-trophy achiev-icon"></i>
+                    <div>
+                        <h4 class="game-font text-green" style="font-size: 1.5rem;">FINALIST — ECPC 2024</h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">Top 3 Qualification Day</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <i class="fas fa-medal achiev-icon" style="color: var(--neon-cyan);"></i>
+                    <div>
+                        <h4 class="game-font text-cyan" style="font-size: 1.5rem;">PARTICIPANT — ECPC 2023</h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">Competitive Programming</p>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <i class="fas fa-star achiev-icon" style="color: var(--neon-orange);"></i>
+                    <div>
+                        <h4 class="game-font text-orange" style="font-size: 1.5rem;">TOP 5</h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">University Programming Competition (2024)</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / FINAL CTA -->
+    <footer>
+        <h2 class="game-font text-green" style="font-size: 3rem; margin-bottom: 1rem;">MISSION_COMPLETE?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Looking for a dedicated junior engineer or intern to build practical, intelligent models? Let's connect and level up your team.
+        </p>
+        
+        <div class="footer-ctas">
+            <a href="mailto:abdalrahmaneissa05@gmail.com" class="btn-cta primary"><i class="fas fa-envelope"></i> SEND MESSAGE</a>
+            <a href="https://linkedin.com/in/abd-alrahman-eissa" target="_blank" class="btn-cta"><i class="fab fa-linkedin"></i> LINKEDIN</a>
+            <a href="https://github.com/Nov4Saki" target="_blank" class="btn-cta"><i class="fab fa-github"></i> GITHUB</a>
+        </div>
+        
+        <div class="game-font" style="color: #444; margin-top: 3rem;">
+            © 2025 ABDALRAHMAN EISSA. ALL RIGHTS RESERVED. <br>
+            SYS.VERSION: 1.0.0
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Animations (Intersection Observer)
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // 2. Active Nav Link Updates
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sectionIds = ['hero', 'about', 'skills', 'projects', 'experience'];
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                // Determine current section
+                sectionIds.forEach(id => {
+                    const section = document.getElementById(id);
+                    if (section) {
+                        const sectionTop = section.offsetTop - 100;
+                        if (window.scrollY >= sectionTop) {
+                            current = id;
+                        }
+                    }
+                });
+
+                // Apply active class
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth Scroll Override for Nav Links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Console Easter Egg
+            console.log("%c[ SYSTEM ONLINE ]", "color: #90FF33; font-family: monospace; font-size: 20px; font-weight: bold;");
+            console.log("%cWelcome to Novasaki OS. Player profile loaded successfully.", "color: #00F0FF; font-family: monospace; font-size: 14px;");
+        });
+    </script>
+</body>
+</html>
