@@ -67,7 +67,15 @@
             background: var(--neon-purple);
             color: #fff;
         }
-
+        
+        .pixel-art {
+          width: 400px; /* Set this to whatever size you want */
+          height: auto;
+          
+          /* This is the magic line that stops it from blurring! */
+          image-rendering: pixelated; 
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -721,7 +729,7 @@
                     <div class="project-image-placeholder">
                         <!-- REPLACE SRC WITH YOUR IMAGE URL -->
                         <!-- <img src="your-image-url.jpg" alt="AI Agent from Scratch"> -->
-                        <img src="./pixelart-drawing.png" alt="AI Agent from Scratch">
+                        <img src="./pixelart-drawing.png" class="pixel-art" alt="AI Agent from Scratch">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title game-font">AI Agent from Scratch</h3>
@@ -917,6 +925,7 @@
     </script>
 </body>
 </html>
+
 
 
 
