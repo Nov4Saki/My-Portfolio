@@ -515,6 +515,19 @@ class PortfolioApp {
                 </div>
             </div>
 
+            ${p.gallery && p.gallery.length > 1 ? `
+            <div class="project-gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                ${p.gallery.slice(1).map(g => `
+                    <div style="background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--pixel-shadow); overflow: hidden;">
+                        <img src="./${g.src}" alt="${title}" style="width: 100%; height: 260px; object-fit: contain; background: var(--surface-elevated); display: block;">
+                        <div class="media-caption" style="font-size: 0.78rem;">
+                            <span>${g.caption[lang] || g.caption.en}</span>
+                        </div>
+                    </div>
+                `).join("")}
+            </div>
+            ` : ""}
+
             <div class="case-study-grid">
                 <div>
                     <div class="case-section">

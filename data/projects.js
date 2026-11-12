@@ -163,8 +163,8 @@ window.PROJECTS = [
             {
                 src: "projects/chicken-invaders/cover.webp",
                 caption: {
-                    en: "Quantized detector latency profile and real-time bounding box tracking.",
-                    ar: "لوحة قياس استنتاج النموذج المضغوط وتتبع العناصر اللحظي."
+                    en: "In-game frame detection tracking flying chickens, projectiles, and player spaceship in real-time.",
+                    ar: "رصد وتتبع الكائنات والمقذوفات وسفينة اللاعب لحظياً داخل إطارات اللعبة المباشرة."
                 }
             }
         ],
@@ -232,6 +232,13 @@ window.PROJECTS = [
                     en: "Deterministic Thought-Action-Observation loop with live web search and ASL translation.",
                     ar: "حلقة تفكير واستنتاج صريحة تدعم البحث الحي والترجمة إلى لغة الإشارة."
                 }
+            },
+            {
+                src: "projects/react-agent/chicken_assistant.webp",
+                caption: {
+                    en: "Custom pixel robot assistant avatar used in interactive CLI execution modes.",
+                    ar: "شخصية الروبوت المساعد المصممة بنمط البكسل لوضع التشغيل التفاعلي."
+                }
             }
         ],
         links: [
@@ -290,6 +297,13 @@ window.PROJECTS = [
                 caption: {
                     en: "Layered neuro-fuzzy architecture and Takagi-Sugeno rule firing visualization.",
                     ar: "معمارية الطبقات العصبية الضبابية وتفعيل قواعد تاكاجي-سوجينو."
+                }
+            },
+            {
+                src: "projects/anfis/emotions.webp",
+                caption: {
+                    en: "Hand-crafted pixel emotion states analyzed through fuzzy membership functions.",
+                    ar: "حالات المشاعر المصممة بالبكسل والخاضعة لدوال الانتماء والمنطق الضبابي."
                 }
             }
         ],
