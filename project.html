@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study // Abdalrahman Eissa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+    <!-- STICKY HUD NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span class="status-dot"></span>
+                <span>P1 // NOV4SAKI</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#hero" class="nav-link" data-i18n="nav_start">01.START</a>
+                <a href="index.html#work" class="nav-link active" data-i18n="nav_work">02.WORK</a>
+                <a href="index.html#about" class="nav-link" data-i18n="nav_about">03.ABOUT</a>
+                <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">04.CONTACT</a>
+            </div>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="hud-btn" type="button" aria-label="Toggle Language">
+                    <i class="fas fa-globe"></i> <span id="langLabel">AR // عربي</span>
+                </button>
+                <button id="themeToggle" class="hud-btn" type="button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="themeIcon"></i> <span id="themeLabel">LIGHT_DECK</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dynamically rendered case-study container via assets/site.js based on ?id=... -->
+        <article id="projectDetailContainer"></article>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <h2 class="game-font text-green" style="font-size: 2.5rem;" data-i18n="contact_header">INITIATE_CONTACT</h2>
+        <p class="text-muted" style="max-width: 540px; margin: 0.5rem auto 0;" data-i18n="contact_sub">
+            Looking for an AI/ML engineer or collaborating on computer vision and agentic systems? Let's connect.
+        </p>
+
+        <div class="footer-ctas">
+            <button type="button" id="copyEmailBtn" class="btn-cta primary">
+                <i class="fas fa-copy"></i> <span id="copyEmailText">ABDALRAHMANEISSA05@GMAIL.COM</span>
+            </button>
+            <a href="https://github.com/Nov4Saki" target="_blank" rel="noopener" class="btn-cta">
+                <i class="fab fa-github"></i> <span>GITHUB</span>
+            </a>
+            <a href="https://linkedin.com/in/abd-alrahman-eissa" target="_blank" rel="noopener" class="btn-cta">
+                <i class="fab fa-linkedin"></i> <span>LINKEDIN</span>
+            </a>
+        </div>
+
+        <div class="game-font text-muted" style="font-size: 1.05rem; margin-top: 2rem;">
+            ABDALRAHMAN EISSA // NEW DAMIETTA, EGYPT // SYS.VER 3.0
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/projects.js"></script>
+    <script src="assets/site.js"></script>
+</body>
+</html>

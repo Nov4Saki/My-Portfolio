@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdalrahman Eissa // AI &amp; ML Engineer</title>
+    
+    <!-- Meta & Alternative Language Discovery (Prevents search engine cloaking flags) -->
+    <meta name="description" content="Portfolio of Abdalrahman Eissa — AI & ML Engineer and Competitive Programmer specializing in Computer Vision, LLM Agents, and Interpretable Neuro-Fuzzy Systems.">
+    <link rel="alternate" hreflang="en" href="./?lang=en">
+    <link rel="alternate" hreflang="ar" href="./?lang=ar">
+    <link rel="alternate" hreflang="x-default" href="./">
+
+    <!-- Fonts: VT323 (Display), IBM Plex Mono (HUD), Plus Jakarta Sans (Body), Changa + IBM Plex Sans Arabic (AR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Design System -->
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+    <!-- STICKY HUD NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-brand">
+                <span class="status-dot"></span>
+                <span>P1 // NOV4SAKI</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active" data-i18n="nav_start">01.START</a>
+                <a href="#work" class="nav-link" data-i18n="nav_work">02.WORK</a>
+                <a href="#about" class="nav-link" data-i18n="nav_about">03.ABOUT</a>
+                <a href="#contact" class="nav-link" data-i18n="nav_contact">04.CONTACT</a>
+            </div>
+
+            <div class="nav-controls">
+                <button id="langToggle" class="hud-btn" type="button" aria-label="Toggle Language">
+                    <i class="fas fa-globe"></i> <span id="langLabel">AR // عربي</span>
+                </button>
+                <button id="themeToggle" class="hud-btn" type="button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="themeIcon"></i> <span id="themeLabel">LIGHT_DECK</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- ==================================================================
+             HERO WORKBENCH
+             ================================================================== -->
+        <section id="hero" class="hero">
+            <div class="hero-grid">
+                
+                <!-- Left: Punchy Hook + Action Priority -->
+                <div>
+                    <div class="terminal-status">
+                        <span class="status-dot"></span>
+                        <span data-i18n="hero_status">SYS.ONLINE // NEW DAMIETTA, EGYPT</span>
+                    </div>
+
+                    <h1 class="hero-title" data-i18n="hero_name">ABDALRAHMAN EISSA</h1>
+                    <div class="hero-subtitle" data-i18n="hero_class">AI / ML Engineer &amp; Competitive Programmer</div>
+                    
+                    <p class="hero-bio" data-i18n="hero_bio">
+                        I build real-time computer vision pipelines, deterministic LLM agents, and interpretable neuro-fuzzy systems. Backed by an algorithmic core in C++ and competitive programming.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#work" class="btn-cta primary">
+                            <i class="fas fa-bolt"></i> <span data-i18n="hero_cta_projects">EXPLORE WORK</span>
+                        </a>
+                        <a href="https://github.com/Nov4Saki" target="_blank" rel="noopener" class="btn-cta">
+                            <i class="fab fa-github"></i> <span data-i18n="hero_cta_github">GITHUB</span>
+                        </a>
+                        <a href="https://linkedin.com/in/abd-alrahman-eissa" target="_blank" rel="noopener" class="btn-cta">
+                            <i class="fab fa-linkedin"></i> <span data-i18n="hero_cta_linkedin">LINKEDIN</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Character Card + Sonar Goggles Easter Egg -->
+                <div class="player-card">
+                    <div class="window-bar">
+                        <span>CHAR_SHEET.WEBP</span>
+                        <div class="window-dots">
+                            <span style="background: var(--neon-orange);"></span>
+                            <span style="background: var(--neon-cyan);"></span>
+                            <span style="background: var(--neon-green);"></span>
+                        </div>
+                    </div>
+                    <div class="player-card-body">
+                        <div class="hero-avatar">
+                            <img src="assets/avatar.webp" alt="Abdalrahman Eissa Avatar">
+                        </div>
+
+                        <div class="avatar-caption" data-i18n="hero_gear_caption">
+                            GEAR: HC-SR04 Sonar Goggles (Yes, I know it's ultrasonic)
+                        </div>
+
+                        <div class="hero-status-strip">
+                            <span class="text-muted" data-i18n="hero_status_label">STATUS</span>
+                            <span class="text-green" data-i18n="hero_status_val">Open to AI/ML Roles · Grad July '26</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             FEATURED BUILDS (IMAGE-FIRST SHOWCASE)
+             ================================================================== -->
+        <section id="work" class="section">
+            <div class="section-top">
+                <h2 class="section-header" data-i18n="featured_header">FEATURED_BUILDS</h2>
+                <span class="text-muted" style="font-size: 0.9rem;" data-i18n="featured_sub">
+                    Selected deep systems with real benchmarks &amp; production builds
+                </span>
+            </div>
+
+            <!-- Dynamically populated from data/projects.js (featured: true) -->
+            <div id="featuredContainer" class="featured-grid"></div>
+        </section>
+
+        <!-- ==================================================================
+             ALL PROJECTS DIRECTORY (SCALABLE & FILTERABLE)
+             ================================================================== -->
+        <section class="section" style="padding-top: 1rem;">
+            <div class="section-top">
+                <h2 class="section-header" data-i18n="directory_header">PROJECT_DIRECTORY</h2>
+                <span class="text-muted" style="font-size: 0.9rem;" data-i18n="directory_sub">
+                    Filter through all systems, research notebooks, and tools
+                </span>
+            </div>
+
+            <div class="directory-controls">
+                <div id="categoryChips" class="category-chips"></div>
+                <div class="search-box">
+                    <i class="fas fa-search text-muted"></i>
+                    <input type="text" id="searchInput" placeholder="Filter projects or tags..." data-i18n-placeholder="search_placeholder">
+                </div>
+            </div>
+
+            <!-- Compact Directory List Rows -->
+            <div id="directoryList" class="directory-list"></div>
+        </section>
+
+        <!-- ==================================================================
+             ABOUT & LORE (CONDENSED CREDENTIALS & ACHIEVEMENTS)
+             ================================================================== -->
+        <section id="about" class="section" style="border-bottom: none;">
+            <div class="section-top">
+                <h2 class="section-header" data-i18n="about_header">ABOUT &amp; LORE</h2>
+                <span class="text-muted" style="font-size: 0.9rem;" data-i18n="about_sub">
+                    From algorithmic problem-solving to production machine learning
+                </span>
+            </div>
+
+            <div class="about-grid">
+                <!-- Left: Narrative Story -->
+                <div class="about-narrative">
+                    <p data-i18n="about_p1">
+                        I started in competitive programming, spending hundreds of hours optimizing graphs, dynamic programming, and data structures in C++. As an ACPC instructor and mentor at Damietta University, I trained 30+ students for regional ECPC contests and built tools to automate edge-case debugging.
+                    </p>
+                    <p data-i18n="about_p2">
+                        Today, I channel that mathematical and algorithmic rigor into AI engineering: building real-time vision pipelines that run on constrained hardware, transparent LLM reasoning loops without bloated wrappers, and interpretable neuro-fuzzy architectures.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <span class="mini-tag" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">B.Sc. Computer Science (FCAI Damietta, '26)</span>
+                        <span class="mini-tag" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">35 Mos. ACPC Mentorship</span>
+                    </div>
+                </div>
+
+                <!-- Right: Trophy Cabinet -->
+                <div class="trophy-stack">
+                    <div class="trophy-row">
+                        <i class="fas fa-trophy trophy-icon text-green"></i>
+                        <div>
+                            <div class="trophy-title text-green" data-i18n="ach_1_title">FINALIST // ECPC 2024</div>
+                            <div class="trophy-desc" data-i18n="ach_1_desc">Ranked Top 3 on Qualification Day at the Egyptian Collegiate Programming Contest.</div>
+                        </div>
+                    </div>
+
+                    <div class="trophy-row">
+                        <i class="fas fa-star trophy-icon text-orange"></i>
+                        <div>
+                            <div class="trophy-title text-orange" data-i18n="ach_2_title">TOP 5 // UNIVERSITY CONTEST 2024</div>
+                            <div class="trophy-desc" data-i18n="ach_2_desc">Placed 5th across Damietta University's annual programming competition.</div>
+                        </div>
+                    </div>
+
+                    <div class="trophy-row">
+                        <i class="fas fa-medal trophy-icon text-cyan"></i>
+                        <div>
+                            <div class="trophy-title text-cyan" data-i18n="ach_3_title">CONTESTANT // ECPC 2023</div>
+                            <div class="trophy-desc" data-i18n="ach_3_desc">Represented Damietta University in regional algorithmic problem solving.</div>
+                        </div>
+                    </div>
+
+                    <div class="trophy-row">
+                        <i class="fas fa-certificate trophy-icon text-purple"></i>
+                        <div>
+                            <div class="trophy-title text-purple" data-i18n="ach_4_title">NVIDIA CERTIFIED // 2025</div>
+                            <div class="trophy-desc" data-i18n="ach_4_desc">Building LLM Applications With Prompt Engineering.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================================================================
+         FOOTER / COMMS TERMINAL
+         ================================================================== -->
+    <footer id="contact">
+        <h2 class="game-font text-green" style="font-size: 2.6rem;" data-i18n="contact_header">INITIATE_CONTACT</h2>
+        <p class="text-muted" style="max-width: 580px; margin: 0.65rem auto 0;" data-i18n="contact_sub">
+            Looking for an AI/ML engineer or collaborating on computer vision and agentic systems? Let's connect.
+        </p>
+
+        <div class="footer-ctas">
+            <button type="button" id="copyEmailBtn" class="btn-cta primary">
+                <i class="fas fa-copy"></i> <span id="copyEmailText">ABDALRAHMANEISSA05@GMAIL.COM</span>
+            </button>
+            <a href="https://github.com/Nov4Saki" target="_blank" rel="noopener" class="btn-cta">
+                <i class="fab fa-github"></i> <span>GITHUB</span>
+            </a>
+            <a href="https://linkedin.com/in/abd-alrahman-eissa" target="_blank" rel="noopener" class="btn-cta">
+                <i class="fab fa-linkedin"></i> <span>LINKEDIN</span>
+            </a>
+        </div>
+
+        <div class="game-font text-muted" style="font-size: 1.1rem; margin-top: 2rem;">
+            ABDALRAHMAN EISSA // NEW DAMIETTA, EGYPT // SYS.VER 3.0
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/projects.js"></script>
+    <script src="assets/site.js"></script>
+</body>
+</html>
