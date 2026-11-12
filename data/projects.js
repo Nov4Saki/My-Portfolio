@@ -103,7 +103,8 @@ window.PROJECTS = [
             }
         ],
         links: [
-            { type: "writeup", label: "110-Company Benchmark Report", url: "#" }
+            { type: "github", label: "GitHub Repository", url: "https://github.com/Nov4Saki/invoice-tracker" },
+            { type: "writeup", label: "110-Company Benchmark Report", url: "https://github.com/Nov4Saki/invoice-tracker#benchmarks" }
         ],
         title: {
             en: "Air-Gapped Invoice Line-Item Extractor",
@@ -169,6 +170,7 @@ window.PROJECTS = [
             }
         ],
         links: [
+            { type: "github", label: "GitHub Repository", url: "https://github.com/Nov4Saki/chicken-invaders-cv" },
             { type: "dataset", label: "Roboflow Benchmark Dataset", url: "https://app.roboflow.com/chicken-invaders-labeling/chicken-invasion-detection" }
         ],
         title: {
@@ -242,6 +244,7 @@ window.PROJECTS = [
             }
         ],
         links: [
+            { type: "github", label: "GitHub Repository", url: "https://github.com/Nov4Saki/all-about-AI-Agents-" },
             { type: "notebook", label: "Colab Research Notebook", url: "https://colab.research.google.com/drive/1qTTPRWybfoN1lU9_U35tQP5B2lBgAMJT?usp=sharing" }
         ],
         title: {
@@ -308,6 +311,7 @@ window.PROJECTS = [
             }
         ],
         links: [
+            { type: "github", label: "GitHub Profile", url: "https://github.com/Nov4Saki" },
             { type: "notebook", label: "Colab Research Notebook", url: "https://colab.research.google.com/drive/1G8EnFBmLXAJz-m7pX_UKDiKAi9mp-SN0?usp=sharing" }
         ],
         title: {
@@ -359,7 +363,9 @@ window.PROJECTS = [
                 }
             }
         ],
-        links: [],
+        links: [
+            { type: "github", label: "GitHub Repository (ML Tabular)", url: "https://github.com/Nov4Saki/churn-pred" }
+        ],
         title: {
             en: "Seismic Significance Predictive Modeling",
             ar: "النمذجة التنبؤية للنشاط والأهمية الزلزالية"
@@ -410,7 +416,7 @@ window.PROJECTS = [
             }
         ],
         links: [
-            { type: "github", label: "GitHub Profile", url: "https://github.com/Nov4Saki" }
+            { type: "github", label: "GitHub Repository (Graph Engine)", url: "https://github.com/Nov4Saki/Smart-Route-Planner" }
         ],
         title: {
             en: "Competitive Programming Stress-Test Harness",
